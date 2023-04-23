@@ -214,6 +214,52 @@ def test3():
         db_sess.commit()
     return render_template('test3.html', form=forma)
 
+@app.route("/test4", methods=['GET', 'POST'])
+
+def test4():
+    name = 'Numbers'
+    b = [0] * 9
+    if request.method == 'POST':
+        db_sess = db_session.create_session()
+        amount0 = request.form.get('Select0')
+        if amount0 == 'four':
+            b[0] = 1
+        amount1 = request.form.get('Select1')
+        if amount1 == 'two':
+            b[1] = 1
+        amount2 = request.form.get('Select2')
+        if amount2 == 'five':
+            b[2] = 1
+        amount3 = request.form.get('Select3')
+        if amount3 == 'seven':
+            b[3] = 1
+        amount4 = request.form.get('Select4')
+        if amount4 == 'nine':
+            b[4] = 1
+        amount5 = request.form.get('Select5')
+        if amount5 == 'one':
+            b[5] = 1
+        amount6 = request.form.get('Select6')
+        if amount6 == 'eight':
+            b[6] = 1
+        amount7 = request.form.get('Select7')
+        if amount7 == 'six':
+            b[7] = 1
+        amount8 = request.form.get('Select8')
+        if amount8 == 'three':
+            b[8] = 1
+        result = sum(b)
+        user = db_sess.query(User.id)
+        les = Lessons(
+            lesson=name,
+            result=result,
+            user_id=user
+        )
+        db_sess.add(les)
+        db_sess.commit()
+    return render_template('test4.html', form=forma)
+
+
 @app.route('/account')
 def account():
     if aunt == True:

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, make_response, session,g
+from flask import Flask, render_template, request, make_response, session, g
 from data import db_session, users
 from data.lesson import Lessons
 from data.users import User
@@ -77,6 +77,46 @@ def login():
 def exercise_1():
     if aunt == True:
         return render_template("fruits.html", title='illustra')
+    else:
+        return render_template("index.html", title='illustra', message="Зарегестрируйся на сайте, тобы начать")
+
+
+@app.route('/colours')
+def exercise_2():
+    if aunt == True:
+        return render_template("colors.html", title='illustra')
+    else:
+        return render_template("index.html", title='illustra', message="Зарегестрируйся на сайте, тобы начать")
+
+
+@app.route('/animals')
+def exercise_3():
+    if aunt == True:
+        return render_template("animals.html", title='illustra')
+    else:
+        return render_template("index.html", title='illustra', message="Зарегестрируйся на сайте, тобы начать")
+
+
+@app.route('/numbers')
+def exercise_4():
+    if aunt == True:
+        return render_template("numbers.html", title='illustra')
+    else:
+        return render_template("index.html", title='illustra', message="Зарегестрируйся на сайте, тобы начать")
+
+
+@app.route('/family')
+def exercise_5():
+    if aunt == True:
+        return render_template("family.html", title='illustra')
+    else:
+        return render_template("index.html", title='illustra', message="Зарегестрируйся на сайте, тобы начать")
+
+
+@app.route('/drinks')
+def exercise_6():
+    if aunt == True:
+        return render_template("drink.html", title='illustra')
     else:
         return render_template("index.html", title='illustra', message="Зарегестрируйся на сайте, тобы начать")
 
@@ -163,16 +203,16 @@ def test2():
         amount8 = request.form.get('Select8')
         if amount8 == 'grey':
             b[8] = 1
-            result = sum(b)
-            les = Lessons(
-                lesson=name,
-                result=result,
-                user_id=idis
-            )
-            db_sess.add(les)
-            db_sess.commit()
-            return render_template('results.html', message=result)
-        return render_template('test2.html')
+        result = sum(b)
+        les = Lessons(
+            lesson=name,
+            result=result,
+            user_id=idis
+        )
+        db_sess.add(les)
+        db_sess.commit()
+        return render_template('results.html', message=result)
+    return render_template('test2.html')
 
 
 @app.route("/test3", methods=['GET', 'POST'])
@@ -210,19 +250,19 @@ def test3():
         amount8 = request.form.get('Select8')
         if amount8 == 'elephant':
             b[8] = 1
-            result = sum(b)
-            les = Lessons(
-                lesson=name,
-                result=result,
-                user_id=idis
-            )
-            db_sess.add(les)
-            db_sess.commit()
-            return render_template('results.html', message=result)
-        return render_template('test3.html')
+        result = sum(b)
+        les = Lessons(
+            lesson=name,
+            result=result,
+            user_id=idis
+        )
+        db_sess.add(les)
+        db_sess.commit()
+        return render_template('results.html', message=result)
+    return render_template('test3.html')
+
 
 @app.route("/test4", methods=['GET', 'POST'])
-
 def test4():
     global result
     global idis
@@ -257,20 +297,19 @@ def test4():
         amount8 = request.form.get('Select8')
         if amount8 == 'three':
             b[8] = 1
-            result = sum(b)
-            les = Lessons(
-                lesson=name,
-                result=result,
-                user_id=idis
-            )
-            db_sess.add(les)
-            db_sess.commit()
-            return render_template('results.html', message=result)
-        return render_template('test4.html')
+        result = sum(b)
+        les = Lessons(
+            lesson=name,
+            result=result,
+            user_id=idis
+        )
+        db_sess.add(les)
+        db_sess.commit()
+        return render_template('results.html', message=result)
+    return render_template('test4.html')
 
 
 @app.route("/test5", methods=['GET', 'POST'])
-
 def test5():
     global result
     global idis
@@ -305,19 +344,19 @@ def test5():
         amount8 = request.form.get('Select8')
         if amount8 == 'brother':
             b[8] = 1
-            result = sum(b)
-            les = Lessons(
-                lesson=name,
-                result=result,
-                user_id=idis
-            )
-            db_sess.add(les)
-            db_sess.commit()
-            return render_template('results.html', message=result)
-        return render_template('test5.html')
+        result = sum(b)
+        les = Lessons(
+            lesson=name,
+            result=result,
+            user_id=idis
+        )
+        db_sess.add(les)
+        db_sess.commit()
+        return render_template('results.html', message=result)
+    return render_template('test5.html')
+
 
 @app.route("/test6", methods=['GET', 'POST'])
-
 def test6():
     global result
     global idis
@@ -352,29 +391,41 @@ def test6():
         amount8 = request.form.get('Select8')
         if amount8 == 'cocoa':
             b[8] = 1
-            result = sum(b)
-            les = Lessons(
-                lesson=name,
-                result=result,
-                user_id=idis
-            )
-            db_sess.add(les)
-            db_sess.commit()
-            return render_template('results.html', message=result)
-        return render_template('test6.html')
-
+        result = sum(b)
+        les = Lessons(
+            lesson=name,
+            result=result,
+            user_id=idis
+        )
+        db_sess.add(les)
+        db_sess.commit()
+        return render_template('results.html', message=result)
+    return render_template('test6.html')
 
 
 @app.route('/account')
 def account():
+    global idis
     if aunt == True:
         db_sess = db_session.create_session()
-        user = db_sess.query(User.id)
-        return render_template("account.html", title='illustra',
-                               message=db_sess.query(Lessons.result).filter(Lessons.lesson == 'Fruits and Vegetables',
-                                                                            Lessons.user_id == user)).first()
+        user_name = db_sess.query(User.name).filter(User.id == idis).first()
+        user_email = db_sess.query(User.email).filter(User.id == idis).first()
+        fruits = db_sess.query(Lessons.result).filter(Lessons.lesson == 'Fruits and Vegetables',
+                                                      Lessons.user_id == idis).first()
+        colors = db_sess.query(Lessons.result).filter(Lessons.lesson == 'Colors',
+                                                      Lessons.user_id == idis).first()
+        animals = db_sess.query(Lessons.result).filter(Lessons.lesson == 'Animals',
+                                                       Lessons.user_id == idis).first()
+        numbers = db_sess.query(Lessons.result).filter(Lessons.lesson == 'Numbers',
+                                                       Lessons.user_id == idis).first()
+        family = db_sess.query(Lessons.result).filter(Lessons.lesson == 'Family',
+                                                       Lessons.user_id == idis).first()
+        drinks = db_sess.query(Lessons.result).filter(Lessons.lesson == 'Drinks',
+                                                       Lessons.user_id == idis).first()
+
+        return render_template('profile.html', user_name=user_name, user_email=user_email,fruits=fruits,colors=colors,animals=animals,numbers=numbers,family=family,drinks=drinks)
     else:
-        return render_template("index.html", title='illustra', message="Зарегестрируйся на сайте, тобы начать")
+        return render_template("index.html", title='illustra')
 
 
 @app.route('/result')

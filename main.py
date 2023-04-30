@@ -5,6 +5,7 @@ from data.users import User
 from forms.user import RegisterForm, LoginForm
 from werkzeug.utils import redirect
 from flask_login import login_user, LoginManager, login_required, logout_user, current_user
+import os
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'

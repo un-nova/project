@@ -78,7 +78,7 @@ def exercise_1():
     if aunt == True:
         return render_template("fruits.html", title='illustra')
     else:
-        return render_template("index.html", title='illustra', message="Зарегестрируйся на сайте, тобы начать")
+        return render_template("index.html", title='illustra', message="Зарегестрируйся на сайте, чтобы начать")
 
 
 @app.route('/colours')
@@ -86,7 +86,7 @@ def exercise_2():
     if aunt == True:
         return render_template("colors.html", title='illustra')
     else:
-        return render_template("index.html", title='illustra', message="Зарегестрируйся на сайте, тобы начать")
+        return render_template("index.html", title='illustra', message="Зарегестрируйся на сайте, чтобы начать")
 
 
 @app.route('/animals')
@@ -94,7 +94,7 @@ def exercise_3():
     if aunt == True:
         return render_template("animals.html", title='illustra')
     else:
-        return render_template("index.html", title='illustra', message="Зарегестрируйся на сайте, тобы начать")
+        return render_template("index.html", title='illustra', message="Зарегестрируйся на сайте, чтобы начать")
 
 
 @app.route('/numbers')
@@ -102,7 +102,7 @@ def exercise_4():
     if aunt == True:
         return render_template("numbers.html", title='illustra')
     else:
-        return render_template("index.html", title='illustra', message="Зарегестрируйся на сайте, тобы начать")
+        return render_template("index.html", title='illustra', message="Зарегестрируйся на сайте, чтобы начать")
 
 
 @app.route('/family')
@@ -110,7 +110,7 @@ def exercise_5():
     if aunt == True:
         return render_template("family.html", title='illustra')
     else:
-        return render_template("index.html", title='illustra', message="Зарегестрируйся на сайте, тобы начать")
+        return render_template("index.html", title='illustra', message="Зарегестрируйся на сайте, чтобы начать")
 
 
 @app.route('/drinks')
@@ -118,7 +118,7 @@ def exercise_6():
     if aunt == True:
         return render_template("drink.html", title='illustra')
     else:
-        return render_template("index.html", title='illustra', message="Зарегестрируйся на сайте, тобы начать")
+        return render_template("index.html", title='illustra', message="Зарегестрируйся на сайте, чтобы начать")
 
 
 @app.route("/test1", methods=['GET', 'POST'])
@@ -193,6 +193,7 @@ def test1():
 def test2():
     global result
     global idis
+    a = []
     name = 'Colors'
     b = [0] * 9
     if request.method == 'POST':
@@ -200,30 +201,50 @@ def test2():
         amount0 = request.form.get('Select0')
         if amount0 == 'white':
             b[0] = 1
+        else:
+            a.append('white')
         amount1 = request.form.get('Select1')
         if amount1 == 'yellow':
             b[1] = 1
+        else:
+            a.append('yellow')
         amount2 = request.form.get('Select2')
         if amount2 == 'pink':
             b[2] = 1
+        else:
+            a.append('pink')
         amount3 = request.form.get('Select3')
         if amount3 == 'black':
             b[3] = 1
+        else:
+            a.append('black')
         amount4 = request.form.get('Select4')
         if amount4 == 'red':
             b[4] = 1
+        else:
+            a.append('red')
         amount5 = request.form.get('Select5')
         if amount5 == 'green':
             b[5] = 1
+        else:
+            a.append('green')
         amount6 = request.form.get('Select6')
         if amount6 == 'blue':
             b[6] = 1
+        else:
+            a.append('blue')
         amount7 = request.form.get('Select7')
         if amount7 == 'orange':
             b[7] = 1
+        else:
+            a.append('orange')
         amount8 = request.form.get('Select8')
         if amount8 == 'grey':
             b[8] = 1
+        else:
+            a.append('grey')
+        if len(a) == 0:
+            a.append('отсутствуют')
         result = sum(b)
         les = Lessons(
             lesson=name,
@@ -232,7 +253,7 @@ def test2():
         )
         db_sess.add(les)
         db_sess.commit()
-        return render_template('results.html', message=result)
+        return render_template('results.html', message=result, message2=', '.join(a))
     return render_template('test2.html')
 
 
@@ -240,6 +261,7 @@ def test2():
 def test3():
     global result
     global idis
+    a = []
     name = 'Animals'
     b = [0] * 9
     if request.method == 'POST':
@@ -247,30 +269,50 @@ def test3():
         amount0 = request.form.get('Select0')
         if amount0 == 'cat':
             b[0] = 1
+        else:
+            a.append('cat')
         amount1 = request.form.get('Select1')
         if amount1 == 'dog':
             b[1] = 1
+        else:
+            a.append('dog')
         amount2 = request.form.get('Select2')
         if amount2 == 'bird':
             b[2] = 1
+        else:
+            a.append('bird')
         amount3 = request.form.get('Select3')
         if amount3 == 'rabbit':
             b[3] = 1
+        else:
+            a.append('rabbit')
         amount4 = request.form.get('Select4')
         if amount4 == 'fox':
             b[4] = 1
+        else:
+            a.append('fox')
         amount5 = request.form.get('Select5')
         if amount5 == 'monkey':
             b[5] = 1
+        else:
+            a.append('monkey')
         amount6 = request.form.get('Select6')
         if amount6 == 'pig':
             b[6] = 1
+        else:
+            a.append('pig')
         amount7 = request.form.get('Select7')
         if amount7 == 'lion':
             b[7] = 1
+        else:
+            a.append('lion')
         amount8 = request.form.get('Select8')
         if amount8 == 'elephant':
             b[8] = 1
+        else:
+            a.append('elephant')
+        if len(a) == 0:
+            a.append('отсутствуют')
         result = sum(b)
         les = Lessons(
             lesson=name,
@@ -279,7 +321,7 @@ def test3():
         )
         db_sess.add(les)
         db_sess.commit()
-        return render_template('results.html', message=result)
+        return render_template('results.html', message=result, message2=', '.join(a))
     return render_template('test3.html')
 
 
@@ -287,6 +329,7 @@ def test3():
 def test4():
     global result
     global idis
+    a = []
     name = 'Numbers'
     b = [0] * 9
     if request.method == 'POST':
@@ -294,30 +337,50 @@ def test4():
         amount0 = request.form.get('Select0')
         if amount0 == 'four':
             b[0] = 1
+        else:
+            a.append('four')
         amount1 = request.form.get('Select1')
         if amount1 == 'two':
             b[1] = 1
+        else:
+            a.append('two')
         amount2 = request.form.get('Select2')
         if amount2 == 'five':
             b[2] = 1
+        else:
+            a.append('five')
         amount3 = request.form.get('Select3')
         if amount3 == 'seven':
             b[3] = 1
+        else:
+            a.append('seven')
         amount4 = request.form.get('Select4')
         if amount4 == 'nine':
             b[4] = 1
+        else:
+            a.append('nine')
         amount5 = request.form.get('Select5')
         if amount5 == 'one':
             b[5] = 1
+        else:
+            a.append('one')
         amount6 = request.form.get('Select6')
         if amount6 == 'eight':
             b[6] = 1
+        else:
+            a.append('eight')
         amount7 = request.form.get('Select7')
         if amount7 == 'six':
             b[7] = 1
+        else:
+            a.append('six')
         amount8 = request.form.get('Select8')
         if amount8 == 'three':
             b[8] = 1
+        else:
+            a.append('three')
+        if len(a) == 0:
+            a.append('отсутствуют')
         result = sum(b)
         les = Lessons(
             lesson=name,
@@ -326,7 +389,7 @@ def test4():
         )
         db_sess.add(les)
         db_sess.commit()
-        return render_template('results.html', message=result)
+        return render_template('results.html', message=result, message2=', '.join(a))
     return render_template('test4.html')
 
 
@@ -334,6 +397,7 @@ def test4():
 def test5():
     global result
     global idis
+    a = []
     name = 'Family'
     b = [0] * 9
     if request.method == 'POST':
@@ -341,30 +405,50 @@ def test5():
         amount0 = request.form.get('Select0')
         if amount0 == 'kin':
             b[0] = 1
+        else:
+            a.append('kin')
         amount1 = request.form.get('Select1')
         if amount1 == 'mother':
             b[1] = 1
+        else:
+            a.append('mother')
         amount2 = request.form.get('Select2')
         if amount2 == 'father':
             b[2] = 1
+        else:
+            a.append('father')
         amount3 = request.form.get('Select3')
         if amount3 == 'daughter':
             b[3] = 1
+        else:
+            a.append('daughter')
         amount4 = request.form.get('Select4')
         if amount4 == 'son':
             b[4] = 1
+        else:
+            a.append('son')
         amount5 = request.form.get('Select5')
         if amount5 == 'grandmother':
             b[5] = 1
+        else:
+            a.append('grandmother')
         amount6 = request.form.get('Select6')
         if amount6 == 'grandfather':
             b[6] = 1
+        else:
+            a.append('grandfather')
         amount7 = request.form.get('Select7')
         if amount7 == 'sister':
             b[7] = 1
+        else:
+            a.append('sister')
         amount8 = request.form.get('Select8')
         if amount8 == 'brother':
             b[8] = 1
+        else:
+            a.append('brother')
+        if len(a) == 0:
+            a.append('отсутствуют')
         result = sum(b)
         les = Lessons(
             lesson=name,
@@ -373,7 +457,7 @@ def test5():
         )
         db_sess.add(les)
         db_sess.commit()
-        return render_template('results.html', message=result)
+        return render_template('results.html', message=result, message2=', '.join(a))
     return render_template('test5.html')
 
 
@@ -381,6 +465,7 @@ def test5():
 def test6():
     global result
     global idis
+    a = []
     name = 'Drinks'
     b = [0] * 9
     if request.method == 'POST':
@@ -388,30 +473,50 @@ def test6():
         amount0 = request.form.get('Select0')
         if amount0 == 'water':
             b[0] = 1
+        else:
+            a.append('water')
         amount1 = request.form.get('Select1')
         if amount1 == 'milkshake':
             b[1] = 1
+        else:
+            a.append('milkshake')
         amount2 = request.form.get('Select2')
         if amount2 == 'juice':
             b[2] = 1
+        else:
+            a.append('juice')
         amount3 = request.form.get('Select3')
         if amount3 == 'milk':
             b[3] = 1
+        else:
+            a.append('milk')
         amount4 = request.form.get('Select4')
         if amount4 == 'coffee':
             b[4] = 1
+        else:
+            a.append('coffee')
         amount5 = request.form.get('Select5')
         if amount5 == 'cola':
             b[5] = 1
+        else:
+            a.append('cola')
         amount6 = request.form.get('Select6')
         if amount6 == 'lemonade':
             b[6] = 1
+        else:
+            a.append('lemonade')
         amount7 = request.form.get('Select7')
         if amount7 == 'tea':
             b[7] = 1
+        else:
+            a.append('tea')
         amount8 = request.form.get('Select8')
         if amount8 == 'cocoa':
             b[8] = 1
+        else:
+            a.append('cocoa')
+        if len(a) == 0:
+            a.append('отсутствуют')
         result = sum(b)
         les = Lessons(
             lesson=name,
@@ -420,7 +525,7 @@ def test6():
         )
         db_sess.add(les)
         db_sess.commit()
-        return render_template('results.html', message=result)
+        return render_template('results.html', message=result, message2=', '.join(a))
     return render_template('test6.html')
 
 
@@ -447,14 +552,14 @@ def account():
         return render_template('profile.html', user_name=' '.join(user_name), user_email=' '.join(user_email), fruits=' '.join(str(fruits)), colors=' '.join(str(colors)),
                                animals=' '.join(str(animals)), numbers=' '.join(str(numbers)), family=' '.join(str(family)), drinks=' '.join(str(drinks)))
     else:
-        return render_template("index.html", title='illustra')
+        return render_template("index.html", title='illastra')
 
 
 @app.route('/result')
 def result():
     global result
     if aunt == True:
-        return render_template("index.html", title='illustra', message=result)
+        return render_template("index.html", title='illastra', message=result)
 
 
 @app.route('/logout')

@@ -125,6 +125,7 @@ def exercise_6():
 def test1():
     global result
     global idis
+    a = []
     name = 'Fruits and Vegetables'
     b = [0] * 9
     if request.method == 'POST':
@@ -132,30 +133,50 @@ def test1():
         amount0 = request.form.get('Select0')
         if amount0 == 'banana':
             b[0] = 1
+        else:
+            a.append('banana')
         amount1 = request.form.get('Select1')
         if amount1 == 'apple':
             b[1] = 1
+        else:
+            a.append('apple')
         amount2 = request.form.get('Select2')
         if amount2 == 'plum':
             b[2] = 1
+        else:
+            a.append('plum')
         amount3 = request.form.get('Select3')
         if amount3 == 'peach':
             b[3] = 1
+        else:
+            a.append('peach')
         amount4 = request.form.get('Select4')
         if amount4 == 'pear':
             b[4] = 1
+        else:
+            a.append('pear')
         amount5 = request.form.get('Select5')
         if amount5 == 'cucumber':
             b[5] = 1
+        else:
+            a.append('cucumber')
         amount6 = request.form.get('Select6')
         if amount6 == 'tomato':
             b[6] = 1
+        else:
+            a.append('tomato')
         amount7 = request.form.get('Select7')
         if amount7 == 'potato':
             b[7] = 1
+        else:
+            a.append('potato')
         amount8 = request.form.get('Select8')
         if amount8 == 'orange':
             b[8] = 1
+        else:
+            a.append('orange')
+        if len(a) == 0:
+            a.append('отсутствуют')
         result = sum(b)
         les = Lessons(
             lesson=name,
@@ -164,7 +185,7 @@ def test1():
         )
         db_sess.add(les)
         db_sess.commit()
-        return render_template('results.html', message=result)
+        return render_template('results.html', message=result, message2=', '.join(a))
     return render_template('test1.html')
 
 
@@ -419,11 +440,12 @@ def account():
         numbers = db_sess.query(Lessons.result).filter(Lessons.lesson == 'Numbers',
                                                        Lessons.user_id == idis).first()
         family = db_sess.query(Lessons.result).filter(Lessons.lesson == 'Family',
-                                                       Lessons.user_id == idis).first()
+                                                      Lessons.user_id == idis).first()
         drinks = db_sess.query(Lessons.result).filter(Lessons.lesson == 'Drinks',
-                                                       Lessons.user_id == idis).first()
+                                                      Lessons.user_id == idis).first()
 
-        return render_template('profile.html', user_name=user_name, user_email=user_email,fruits=fruits,colors=colors,animals=animals,numbers=numbers,family=family,drinks=drinks)
+        return render_template('profile.html', user_name=' '.join(user_name), user_email=' '.join(user_email), fruits=' '.join(str(fruits)), colors=' '.join(str(colors)),
+                               animals=' '.join(str(animals)), numbers=' '.join(str(numbers)), family=' '.join(str(family)), drinks=' '.join(str(drinks)))
     else:
         return render_template("index.html", title='illustra')
 
